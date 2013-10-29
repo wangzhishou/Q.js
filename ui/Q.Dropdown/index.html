@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>下拉菜单</title>
+
+<!-- 依赖脚本引入 -->
+<script type="text/javascript" src="../../Q.js"></script>
+
+<!-- 控件脚本引入 -->
+<script type="text/javascript" src="Q.Dropdown.js"></script>
+
+<!-- 公共样式引入 -->
+<link href="../style.css" rel="stylesheet" type="text/css" />
+
+<!-- 控件样式单引入 -->
+<link href="css/Q.Dropdown.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="nav">
+  <ul class="dropdown" id="DropmenuContainer">
+    <li> <a href="/"><i class="icon-home icon-white"></i> 后台首页</a> </li>
+    <li> <a href="#"><i class="icon-th icon-white"></i> 资料库 <b class="caret"></b></a>
+      <ul>
+        <li> <a href="#">权限管理 <b class="caret-right"></b></a>
+          <ul>
+            <li> <a href="#">权限节点列表</a> </li>
+            <li> <a href="#">角色列表</a> </li>
+            <li> <a href="#">日志列表</a> </li>
+            <li> <a href="#">用户列表</a> </li>
+          </ul>
+        </li>
+        <li> <a href="#">车型库管理<b class="caret-right"></b></a>
+          <ul>
+            <li> <a href="#">车型品牌列表</a> </li>
+            <li> <a href="#">常数管理</a> </li>
+            <li> <a href="#">价格区间管理</a> </li>
+            <li> <a href="#">选项管理</a> </li>
+            <li> <a href="#">车型参数项目维护</a> </li>
+            <li> <a href="#">车型列表</a> </li>
+            <li> <a href="#">车系管理</a> </li>
+            <li> <a href="#">销售商管理</a> </li>
+            <li> <a href="#">人物信息</a> </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li> <a href="#"><i class="icon-wrench icon-white"></i> 车展管理 <b class="caret"></b></a>
+      <ul>
+        <li> <a href="#">子菜单</a> </li>
+      </ul>
+    </li>
+    <li> <a href="#"><i class="icon-file icon-white"></i> 权限管理 <b class="caret"></b></a>
+      <ul>
+        <li> <a href="#">子菜单</a> </li>
+      </ul>
+    </li>
+    <li> </li>
+  </ul>
+</div>
+<script type="text/javascript">
+var dropdown = new Q.Dropdown('DropmenuContainer', {active:'menuhover'});
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+	<title>日历控件</title>
+	
+	<!-- 依赖脚本引入 -->
+	<script type="text/javascript" src="../../Q.js"></script>
+	
+	<!-- 控件脚本引入 -->
+	<script type="text/javascript" src="Q.Calendar.js"></script>
+	
+	<!-- 控件样式单引入 -->
+	<link href="css/Q.Calendar.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<div id="ShowDate"></div>
+</body>
+
+<!-- 控件使用示例代码 -->
+<script type="text/javascript">
+var myCalendar = new Q.Calendar({
+	onselect: function (date) {
+		if (date.getDate() == 1){alert('不让你选1号');return false;}
+		Q("ShowDate").innerHTML = "您选择的日期是:" + date.getFullYear() + "年" + (date.getMonth()+1) + "月" + date.getDate() + "日";
+	},
+	dateStyle: function (date) {
+		if(date.getDay() == 0 || date.getDay() == 6) return "background:#eee";
+	},
+	onviewchange:function (date) {
+		if (date.getMonth() > 10) {
+			alert('不能选择12月份');
+			return false;
+		}
+	}
+});
+myCalendar.appendTo(document.body);
+</script>
+
+</html>

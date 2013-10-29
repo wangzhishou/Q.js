@@ -1,0 +1,40 @@
+#QBox, #QBoxOverlay, #QBoxWrapper{position:absolute; top:0; left:0; z-index:9999; overflow:hidden;}
+#QBoxOverlay{position:fixed; width:100%; height:100%;}
+#QBoxMiddleLeft, #QBoxBottomLeft{clear:left;}
+#QBoxContent{position:relative;}
+#QBoxLoadedContent{overflow:auto;}
+#QBoxTitle{margin:0;}
+#QBoxLoadingOverlay, #QBoxLoadingGraphic{position:absolute; top:0; left:0; width:100%; height:100%;}
+#QBoxPrevious, #QBoxNext, #QBoxClose, #QBoxSlideshow{cursor:pointer;}
+.QBoxPhoto{float:left; margin:auto; border:0; display:block;}
+.QBoxIframe{width:100%; height:100%; display:block; border:0;}
+#QBox, #QBoxContent, #QBoxLoadedContent{box-sizing:content-box;}
+#QBoxOverlay{background:#777}
+#QBox{}
+    #QBoxContent{margin-top:32px; overflow:visible;}
+        .QBoxIframe{background:#fff;}
+        #QBoxError{padding:50px; border:1px solid #ccc;}
+        #QBoxLoadedContent{border:8px solid rgba(0,0,0,.5);-webkit-border-radius: 6px;-moz-border-radius: 6px;-ms-border-radius: 6px;border-radius: 6px;display:none}
+        #QBoxLoadingGraphic{background:url(images/loading.gif) no-repeat center center;}
+        #QBoxLoadingOverlay{background: #000;background: rgba(0,0,0,.5);-webkit-border-radius: 6px;-moz-border-radius: 6px;-ms-border-radius: 6px;border-radius: 6px}
+        #QBoxTitle{position:absolute; top:-22px; left:0; color:#000;background:#000;background: rgba(0,0,0,.5);-webkit-border-radius: 4px;-moz-border-radius: 4px;-ms-border-radius: 4px;border-radius: 4px;color:#fff;font-size:11px;padding:0 6px}
+        #QBoxCurrent{position:absolute; top:-22px; right:205px; text-indent:-9999px;}
+        
+        #QBoxPrevious, #QBoxNext,#QBoxSlideshow, #QBoxClose{width:20px;height:20px;top:-22px;text-indent:-9999px; position:absolute; background: #fff url(images/controls.png) no-repeat 0 0; background: rgba(255,255,255,.6) url(images/controls.png) no-repeat 0 0;-webkit-border-radius: 4px;-moz-border-radius: 4px;-ms-border-radius: 4px;border-radius: 4px}
+        #QBoxPrevious:hover, #QBoxNext:hover,#QBoxSlideshow:hover, #QBoxClose:hover {background-color: rgba(255,255,255,.8)}
+
+        #QBoxPrevious{background-position:0 -1px; right:56px}
+        #QBoxPrevious:hover{background-position:0 -26px}
+        #QBoxNext{background-position:-25px -1px; right:32px}
+        #QBoxNext:hover{background-position:-25px -26px}
+
+        #QBoxClose{background-position:-50px -1px;right:0}
+        #QBoxClose:hover{background-position:-50px -26px}
+
+        #QBoxSlideshow {right:90px}
+        .QBoxSlideshow_on #QBoxSlideshow{background-position:-75px -1px}
+        .QBoxSlideshow_on #QBoxSlideshow:hover{background-position:-75px -26px}
+        .QBoxSlideshow_off #QBoxSlideshow{background-position:-100px -1px}
+        .QBoxSlideshow_off #QBoxSlideshow:hover{background-position:-100px -26px}
+
+.QBox_content {background:#fff;padding:20px}
