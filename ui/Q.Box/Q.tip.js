@@ -5,16 +5,19 @@
  * @auther wangzhishou@qq.com
  */
 Q.tip = function(message, options) {	
-	if (!this.box) {
-		this.box   = new Q.Box();	
+	if (!this.tipBox) {
+		this.tipBox   = new Q.Box();	
 	}
 	var _this = this;
-	var options       = {};
-	options.id        = "Qalert";
-	options.title     = null;
-	options.showClose = false;
-	options.maskClick = false;
-	options.isEffect  = false;
-	var html = '<div id="QalertMessage">' + message + '</div>';
-	return this.box.show(html, options);
+	options       	  = options || {};
+	options.id        = options.id || "Qtip";
+	options.title     = options.title || null;
+	options.showClose = options.showClose || false;
+	options.maskClick = options.maskClick || false;
+	options.isEffect  = options.isEffect || true;
+	var html = '<div id="QtipMessage"><div class="mText">' + message + '</div></div>';
+	setTimeout(function(){
+		_this.tipBox.closeBox();
+	}, 2000)
+	return this.tipBox.show(html, options);
 };

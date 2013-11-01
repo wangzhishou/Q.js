@@ -403,7 +403,7 @@ Q.Box.prototype = {
             	var valHeight = startHeight + (offsetH - startHeight) * rate; 
 				content.style.cssText = Q.format("height:{0}px;width{1}px", valHeight, valWidth);
 			}
-			Q.tween(this.id,{left:left,top:top,width:offsetW, height:offsetH}, {duration:500, onComplete:onComplete, onTween:onTween});
+			Q.tween("#" + this.id,{left:left,top:top,width:offsetW, height:offsetH}, {duration:500, onComplete:onComplete, onTween:onTween});
 		} else {
 			onComplete();
 			self.autoCenter(offsetW, offsetH);

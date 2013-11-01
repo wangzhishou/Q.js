@@ -119,7 +119,6 @@
 	</target>
 
 	<!-- ================================= target : compress ================================= -->
-
 	<target name="compress" depends="concat" description="compress code">
 
 		<echo message="Compress Code Begin" />

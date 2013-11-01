@@ -5,8 +5,8 @@
  * @auther wangzhishou@qq.com
  */
 Q.alert = function(message, options) {	
-	if (!this.box) {
-		this.box   = new Q.Box();	
+	if (!this.alertBox) {
+		this.alertBox   = new Q.Box();	
 	}
 	var _this = this;
 	var options       = {};
@@ -21,11 +21,11 @@ Q.alert = function(message, options) {
 			"className" : "button green",
 			"callBack" : {
 				"click" : function() {
-					_this.box.closeBox();
+					_this.alertBox.closeBox();
 				}
 			}
 		}
 	}
 	var html = '<div id="QalertMessage">' + message + '</div>';
-	return this.box.show(html, options);
+	return this.alertBox.show(html, options);
 };

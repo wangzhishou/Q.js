@@ -403,7 +403,7 @@ Q.Box.prototype = {
             	var valHeight = startHeight + (offsetH - startHeight) * rate; 
 				content.style.cssText = Q.format("height:{0}px;width{1}px", valHeight, valWidth);
 			}
-			Q.tween(this.id,{left:left,top:top,width:offsetW, height:offsetH}, {duration:500, onComplete:onComplete, onTween:onTween});
+			Q.tween("#" + this.id,{left:left,top:top,width:offsetW, height:offsetH}, {duration:500, onComplete:onComplete, onTween:onTween});
 		} else {
 			onComplete();
 			self.autoCenter(offsetW, offsetH);
@@ -521,8 +521,8 @@ Q.Box.prototype = {
  * @auther wangzhishou@qq.com
  */
 Q.alert = function(message, options) {	
-	if (!this.box) {
-		this.box   = new Q.Box();	
+	if (!this.alertBox) {
+		this.alertBox   = new Q.Box();	
 	}
 	var _this = this;
 	var options       = {};
@@ -537,13 +537,13 @@ Q.alert = function(message, options) {
 			"className" : "button green",
 			"callBack" : {
 				"click" : function() {
-					_this.box.closeBox();
+					_this.alertBox.closeBox();
 				}
 			}
 		}
 	}
 	var html = '<div id="QalertMessage">' + message + '</div>';
-	return this.box.show(html, options);
+	return this.alertBox.show(html, options);
 };
 /**
  * 信息提示框，默认2秒后消失
@@ -552,18 +552,21 @@ Q.alert = function(message, options) {
  * @auther wangzhishou@qq.com
  */
 Q.tip = function(message, options) {	
-	if (!this.box) {
-		this.box   = new Q.Box();	
+	if (!this.tipBox) {
+		this.tipBox   = new Q.Box();	
 	}
 	var _this = this;
-	var options       = {};
-	options.id        = "Qalert";
-	options.title     = null;
-	options.showClose = false;
-	options.maskClick = false;
-	options.isEffect  = false;
-	var html = '<div id="QalertMessage">' + message + '</div>';
-	return this.box.show(html, options);
+	options       	  = options || {};
+	options.id        = options.id || "Qtip";
+	options.title     = options.title || null;
+	options.showClose = options.showClose || false;
+	options.maskClick = options.maskClick || false;
+	options.isEffect  = options.isEffect || true;
+	var html = '<div id="QtipMessage"><div class="mText">' + message + '</div></div>';
+	setTimeout(function(){
+		_this.tipBox.closeBox();
+	}, 2000)
+	return this.tipBox.show(html, options);
 };
 /**
  * 弹出确认框
