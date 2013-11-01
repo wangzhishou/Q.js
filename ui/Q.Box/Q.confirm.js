@@ -1,9 +1,9 @@
 /**
- * µ¯³öÈ·ÈÏ¿ò
+ * å¼¹å‡ºç¡®è®¤æ¡†
  * @name Q.confirm
- * @param {String} message ĞèÒªÏÔÊ¾µÄÄÚÈİ£¬Ö§³ÖHTML
- * @param {Function} acceptFun È·ÈÏ½ÓÊÜºó»Øµ÷º¯Êı
- * @param {Function} cancelFun È¡Ïû»Øµ÷º¯Êı
+ * @param {String} message éœ€è¦æ˜¾ç¤ºçš„å†…å®¹ï¼Œæ”¯æŒHTML
+ * @param {Function} acceptFun ç¡®è®¤æ¥å—åå›è°ƒå‡½æ•°
+ * @param {Function} cancelFun å–æ¶ˆå›è°ƒå‡½æ•°
  * @auther wangzhishou@qq.com
  */
 Q.confirm = function(message, acceptFun, cancelFun) {	
@@ -15,20 +15,20 @@ Q.confirm = function(message, acceptFun, cancelFun) {
 	options.maskClick = false;
 	options.isEffect  = false;
 	options.buttons   = {
-		"È·¶¨" : {
-			id : "QconfirmSubmit",
-			class : "button green",
-			callBack : {
+		"ç¡®å®š" : {
+			"id" : "QconfirmSubmit",
+			"class" : "button green",
+			"callBack" : {
 				"click" : function() {
 					box.closeBox();
 					acceptFun && acceptFun();
 				}
 			}
 		},
-		"È¡Ïû" : {
-			id : "QconfirmCancel",
-			class : "button blue",
-			callBack : {
+		"å–æ¶ˆ" : {
+			"id" : "QconfirmCancel",
+			"class" : "button blue",
+			"callBack" : {
 				"click" : function() {
 					box.closeBox();
 					cancelFun && cancelFun();

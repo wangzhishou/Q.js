@@ -1,11 +1,11 @@
 /**
- * ÏÂÀ­²Ëµ¥UIÀà
+ * ä¸‹æ‹‰èœå•UIç±»
  * @auther wangzhishou@qq.com
- * @param {String || HtmlElement} id ²Ëµ¥ËùÔÚid
- * @param {Boolean} [options.fade] ÊÇ·ñÓĞ½¥Òş½¥ÏÖµÄ¶¯»­Ğ§¹û
- * @param {Boolean} [options.slide] ÊÇ·ñÓĞ»ÃµÆÆ¬Ğ§¹û
- * @param {String} [options.active] µ±Ç°²Ëµ¥¼¤»îÑùÊ½
- * @param {Number} [options.speed] ¶¯»­²¥·ÅËÙ¶È
+ * @param {String || HtmlElement} id èœå•æ‰€åœ¨id
+ * @param {Boolean} [options.fade] æ˜¯å¦æœ‰æ¸éšæ¸ç°çš„åŠ¨ç”»æ•ˆæœ
+ * @param {Boolean} [options.slide] æ˜¯å¦æœ‰å¹»ç¯ç‰‡æ•ˆæœ
+ * @param {String} [options.active] å½“å‰èœå•æ¿€æ´»æ ·å¼
+ * @param {Number} [options.speed] åŠ¨ç”»æ’­æ”¾é€Ÿåº¦
  */
 Q.Dropdown = function(id, options) {
 	for (i in options) {
@@ -19,37 +19,37 @@ Q.Dropdown = function(id, options) {
 
 Q.Dropdown.prototype = {
 	/**
-	 * ÊÇ·ñÓĞ½¥±äµÄ¶¯»­
+	 * æ˜¯å¦æœ‰æ¸å˜çš„åŠ¨ç”»
 	 */
 	fade:1,
 
 	/**
-	 * ÊÇ·ñÓĞ»ÃµÆÆ¬Ğ§¹û
+	 * æ˜¯å¦æœ‰å¹»ç¯ç‰‡æ•ˆæœ
 	 */
 	slide:1,
 
 	/**
-	 * µ±Ç°¼¤»îµÄÑùÊ½
+	 * å½“å‰æ¿€æ´»çš„æ ·å¼
 	 */
 	active : 0,
 
 	/**
-	 * ¶¯»­³ÖĞøÊ±¼ä
+	 * åŠ¨ç”»æŒç»­æ—¶é—´
 	 */
 	timeout : 200,
 
 	/**
-	 * ¸¡²ã²ã¼¶
+	 * æµ®å±‚å±‚çº§
 	 */
 	zIndex : 1000,
 
 	/**
-	 * ¹¹½¨
+	 * æ„å»º
 	 */
 	build : function() {
 		this.liList = []; 
 		this.ulList = []; 
-		var element = Q(this.id);
+		var element = Q("#" +this.id);
 		var ulList  = element.getElementsByTagName("ul"), l = ulList.length, i = 0; 
 		this.speed  = this.speed ? this.speed*.1 : .5;
 		for (i; i<l; i++) {
@@ -66,9 +66,9 @@ Q.Dropdown.prototype = {
 	},
 
 	/**
-	 * ÏÔÊ¾²Ëµ¥
-	 * @param {Number} index ĞèÒªÏÔÊ¾µÄ²Ëµ¥Ë÷Òı
-	 * @param {Boolean} flag ÊÇ·ñÏÔÊ¾
+	 * æ˜¾ç¤ºèœå•
+	 * @param {Number} index éœ€è¦æ˜¾ç¤ºçš„èœå•ç´¢å¼•
+	 * @param {Boolean} flag æ˜¯å¦æ˜¾ç¤º
 	 */
 	show : function(index, flag) {
 		var _this = this;
@@ -127,11 +127,11 @@ Q.Dropdown.prototype = {
 	},
 
 	/**
-	 * ¹Ø±ÕËùÓĞ²Ëµ¥
+	 * å…³é—­æ‰€æœ‰èœå•
 	 */
 	collapse : function() {
 		return function() {
-			var element = Q(_this.id);
+			var element = Q("#" +_this.id);
 			var ulList  = element.getElementsByTagName("ul"), l = ulList.length, i = 0;
 			for (i; i<l; i++) {
 				ulList[i].style.display='none';
@@ -140,7 +140,7 @@ Q.Dropdown.prototype = {
 	},
 
 	/**
-	 * Òş²Ø²Ëµ¥
+	 * éšè—èœå•
 	 */
 	hide : function (ul, flag, li, classStr) {
 		var _this = this;
@@ -157,10 +157,10 @@ Q.Dropdown.prototype = {
 	},
 
 	/**
-	 * »¬¶¯²Ëµ¥
-	 * @param {HtmlElement} ul ĞèÒª»¬¶¯Õ¹¿ªµÄHTMLÔªËØ
-	 * @param {Number} ul µ÷ÕûµÄÆ«ÒÆÁ¿	 
-	 * @param {Boolean} isDown Õ¹¿ª»òÕßÊÕËõ
+	 * æ»‘åŠ¨èœå•
+	 * @param {HtmlElement} ul éœ€è¦æ»‘åŠ¨å±•å¼€çš„HTMLå…ƒç´ 
+	 * @param {Number} ul è°ƒæ•´çš„åç§»é‡	 
+	 * @param {Boolean} isDown å±•å¼€æˆ–è€…æ”¶ç¼©
 	 */
 	slide : function (ul, offset, isDown) {
 		if (ul.current == offset) {

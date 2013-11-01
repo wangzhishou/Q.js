@@ -514,3 +514,95 @@ Q.Box.prototype = {
 		this.showContentBox(options);
 	}
 };
+/**
+ * 弹出确认框
+ * @name Q.alert
+ * @param {String} message 需要显示的内容，支持HTML
+ * @auther wangzhishou@qq.com
+ */
+Q.alert = function(message, options) {	
+	if (!this.box) {
+		this.box   = new Q.Box();	
+	}
+	var _this = this;
+	var options       = {};
+	options.id        = "Qalert";
+	options.title     = null;
+	options.showClose = false;
+	options.maskClick = false;
+	options.isEffect  = false;
+	options.buttons   = {
+		"确定" : {
+			"id" : "QalertSubmit",
+			"className" : "button green",
+			"callBack" : {
+				"click" : function() {
+					_this.box.closeBox();
+				}
+			}
+		}
+	}
+	var html = '<div id="QalertMessage">' + message + '</div>';
+	return this.box.show(html, options);
+};
+/**
+ * 信息提示框，默认2秒后消失
+ * @name Q.tip
+ * @param {String} message 需要显示的内容，支持HTML
+ * @auther wangzhishou@qq.com
+ */
+Q.tip = function(message, options) {	
+	if (!this.box) {
+		this.box   = new Q.Box();	
+	}
+	var _this = this;
+	var options       = {};
+	options.id        = "Qalert";
+	options.title     = null;
+	options.showClose = false;
+	options.maskClick = false;
+	options.isEffect  = false;
+	var html = '<div id="QalertMessage">' + message + '</div>';
+	return this.box.show(html, options);
+};
+/**
+ * 弹出确认框
+ * @name Q.confirm
+ * @param {String} message 需要显示的内容，支持HTML
+ * @param {Function} acceptFun 确认接受后回调函数
+ * @param {Function} cancelFun 取消回调函数
+ * @auther wangzhishou@qq.com
+ */
+Q.confirm = function(message, acceptFun, cancelFun) {	
+	var box           = new Q.Box();
+	var options       = {};
+	options.id        = "Qconfirm";
+	options.title     = null;
+	options.showClose = false;
+	options.maskClick = false;
+	options.isEffect  = false;
+	options.buttons   = {
+		"确定" : {
+			"id" : "QconfirmSubmit",
+			"class" : "button green",
+			"callBack" : {
+				"click" : function() {
+					box.closeBox();
+					acceptFun && acceptFun();
+				}
+			}
+		},
+		"取消" : {
+			"id" : "QconfirmCancel",
+			"class" : "button blue",
+			"callBack" : {
+				"click" : function() {
+					box.closeBox();
+					cancelFun && cancelFun();
+				}
+			}
+		},
+	}
+	var html = '<div id="QconfirmMessage">' + message + '</div>';
+	return box.show(html, options);
+};

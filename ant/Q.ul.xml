@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="compress" basedir="../" name="wechat">
+	<property name="js" value="./" />
+	<property name="version" value="1.0.0" />
+	<property name="yuicompressor" value="tools/yuicompressor-2.4.7.jar" />
+	<property name="mainjs" value="ui.source.js" />
+
+	<!-- ================================= target : concat ================================= -->
+	<target name="concat" depends="" description="concat code">
+		<echo message="Concat Code Files Begin" />
+		<concat destfile="${js}\${mainjs}" encoding="utf-8" 
+			fixlastline="on">
+			<!--  Dom -->
+			<fileset dir="./" includes="ui/Q.Box/Q.Box.js" />
+			<fileset dir="./" includes="ui/Q.Box/Q.alert.js" />
+			<fileset dir="./" includes="ui/Q.Box/Q.tip.js" />
+			<fileset dir="./" includes="ui/Q.Box/Q.confirm.js" />
+			
+				
+		</concat>
+		<echo message="Concat Code Files Finished" />
+
+	</target>
+
+	<!-- ================================= target : compress ================================= -->
+
+	<target name="compress" depends="concat" description="compress code">
+
+		<echo message="Compress Code Begin" />
+
+		<apply executable="java" parallel="false" failonerror="true" dest="./">
+			<fileset dir="${js}" includes="${mainjs}" />
+			<arg line="-jar" /> 
+			<arg path="${yuicompressor}" />
+			<arg line="--charset utf-8" />
+			<arg line="-o" />
+			<targetfile />
+			<mapper type="glob" from="*.js" to="ui.js" />
+		</apply>
+
+		<echo message="Compress Code Finish" />
+
+	</target>
+
+</project>

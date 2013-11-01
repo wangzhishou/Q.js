@@ -37,17 +37,17 @@ Q.ComboBox.prototype = {
 	init : function () {
 		this.creatElements();
 		this.creatList();
-		var icon = Q(this.iconId);
+		var icon = Q("#" +this.iconId);
 		Q.on(icon, 'click', this.getIconClickHandler());
 		Q.on(document, 'click', this.clickHandle());		
-		Q(this.textId).style.width = (this.w - icon.offsetWidth) + "px";
+		Q("#" +this.textId).style.width = (this.w - icon.offsetWidth) + "px";
 	},
 	
 	/**
 	 * 创建Dom元素
 	 */
 	creatElements : function() {
-		var selector = Q(this.selectId);
+		var selector = Q("#" +this.selectId);
 		this.w = selector.offsetWidth;
 		selector.style.display="none";
 		var ComboBox = document.createElement("div");
@@ -69,14 +69,14 @@ Q.ComboBox.prototype = {
 		
 		var selectValue = selector.options[selector.selectedIndex].innerHTML;
 		ComboBoxText.innerHTML = selectValue;		
-		Q(this.bodyId).title = selectValue;	
+		Q("#" +this.bodyId).title = selectValue;	
 	},
 	
 	/**
 	 * 创建模拟菜单
 	 */		
 	creatList : function () {
-		var selector = Q(this.selectId);	
+		var selector = Q("#" +this.selectId);	
 		var list = document.createElement("div");
 		list.id  = this.listId;
 		list.style.width = this.w + "px";
@@ -90,8 +90,8 @@ Q.ComboBox.prototype = {
 	 * 更新数据
 	 */
 	updateData : function() {
-		var selector = Q(this.selectId);
-		var list = Q(this.listId);
+		var selector = Q("#" +this.selectId);
+		var list = Q("#" +this.listId);
 		if(list) {
 			list.innerHTML = "";
 			var opt = selector.options;
@@ -124,7 +124,7 @@ Q.ComboBox.prototype = {
             e = Q.getEvent(e);
             var tar = Q.getTarget(e);
             if (tar.id != me.iconId) {
-                Q(me.listId).style.display = "none";
+                Q("#" +me.listId).style.display = "none";
                 me.listState = false;
             }
 		};
@@ -139,16 +139,16 @@ Q.ComboBox.prototype = {
     getIconClickHandler: function () {
         var me = this;
         return function (e) {
-            var listEl = Q(me.listId);
+            var listEl = Q("#" +me.listId);
             if (!me.listState) {
                 listEl.style.display = "block";
 				var listElDiv = listEl.getElementsByTagName('div');	
                 var l = listElDiv.length;			
-		    	var selector = Q(me.selectId);	
-                var containerEl = Q(me.bodyId);
+		    	var selector = Q("#" +me.selectId);	
+                var containerEl = Q("#" +me.bodyId);
                 var val = selector.options[selector.selectedIndex].innerHTML;
                 while (l--) {
-					var temp = Q(listElDiv[l]);
+					var temp = Q("#" +listElDiv[l]);
                     if (val == Q.trim(temp.innerHTML)) {
                         me.selectItem = temp.id;
                         Q.addClass(me.selectItem, me.activeClass);
@@ -218,9 +218,9 @@ Q.ComboBox.prototype = {
 	 * @private
 	 */		
 	setSelectValue : function (text) {
-		var obj = Q(this.selectId);
+		var obj = Q("#" +this.selectId);
 		var opt = obj.options;
-		var input = Q(this.textId);
+		var input = Q("#" +this.textId);
 		input.innerHTML = text;
 		input.title = text;
 		for ( var i = 0, n = opt.length; i < n; i++) {

@@ -1,26 +1,26 @@
 /**
- * ÕÚ¸Ç²ã¿Ø¼ş
+ * é®ç›–å±‚æ§ä»¶
  *
  * <pre>
- * ÓÉÓÚjs¶Ôµ±Ç°Ò³Ãæ¿í¶ÈºÍ¸ß¶ÈÈ¡ÖµµÄÊ±ºò£¬»ñÈ¡²»µ½marginµÄÖµ
- * ¶øIE/Firefox/Safariä¯ÀÀÆ÷»á¸øÒ³ÃæbodyÒ»¸öÄ¬ÈÏµÄmarginÖµ
- * ËùÒÔmaskÖ»ÄÜÊ¹ÓÃÔÚbodyµÄmarginÎª0µÄÒ³ÃæÖĞ
- * ÎªÁË±ãÓÚ²¼¾ÖÒÔ¼°ÆÁ±Îä¯ÀÀÆ÷Ö®¼äµÄ²îÒìĞÔ£¬Í¨³£Ò³Ãæ¶¼»áÉèÖÃmarginÎª0
+ * ç”±äºjså¯¹å½“å‰é¡µé¢å®½åº¦å’Œé«˜åº¦å–å€¼çš„æ—¶å€™ï¼Œè·å–ä¸åˆ°marginçš„å€¼
+ * è€ŒIE/Firefox/Safariæµè§ˆå™¨ä¼šç»™é¡µé¢bodyä¸€ä¸ªé»˜è®¤çš„marginå€¼
+ * æ‰€ä»¥maskåªèƒ½ä½¿ç”¨åœ¨bodyçš„marginä¸º0çš„é¡µé¢ä¸­
+ * ä¸ºäº†ä¾¿äºå¸ƒå±€ä»¥åŠå±è”½æµè§ˆå™¨ä¹‹é—´çš„å·®å¼‚æ€§ï¼Œé€šå¸¸é¡µé¢éƒ½ä¼šè®¾ç½®marginä¸º0
  * </pre>
  *
  * @name Q.mask
  * @auther wangzhishou@qq.com
- * @description ÕÚ¸Ç²ã¿Ø¼ş
- * @param {options} options ²ÎÊıÑ¡Ïî
- * @param {htmlElement || String} target ÕÚÕÖ¶ÔÏó£¬Ä¬ÈÏÊÇdocument
- * @param {Number} options.zIndex ÕÚ¸Ç²ãµÄ²ã¼¶£¬Ä¬ÈÏÊÇ999
- * @param {Boolean} options.isIframe ÊÇ·ñÓÃIframeÕÚ¸Ç£¬±ÜÃâieä¯ÀÀÆ÷ÏÂµÄbug, Ä¬ÈÏÊÇfalse£¬²»ÕÚ¸Ç
+ * @description é®ç›–å±‚æ§ä»¶
+ * @param {options} options å‚æ•°é€‰é¡¹
+ * @param {htmlElement || String} target é®ç½©å¯¹è±¡ï¼Œé»˜è®¤æ˜¯document
+ * @param {Number} options.zIndex é®ç›–å±‚çš„å±‚çº§ï¼Œé»˜è®¤æ˜¯999
+ * @param {Boolean} options.isIframe æ˜¯å¦ç”¨Iframeé®ç›–ï¼Œé¿å…ieæµè§ˆå™¨ä¸‹çš„bug, é»˜è®¤æ˜¯falseï¼Œä¸é®ç›–
  */
 Q.Mask = function(options) {    
     options = options || {};
     this.isIframe  = options.isIframe || false;
     this.zIndex = options.zIndex || 9999;
-    this.doc = options.target ? Q(target) : document;
+    this.doc = options.target ? Q(options.target) : document;
     this.id = "Mark" + (new Date()).getTime();
     this.iframeId  = "MarkIframe" + (new Date()).getTime();
     this.init();
@@ -28,7 +28,7 @@ Q.Mask = function(options) {
 
 Q.Mask.prototype = {
     /**
-     * ³õÊ¼»¯
+     * åˆå§‹åŒ–
      */
     init: function() {
         var doc = this.doc;
@@ -40,7 +40,7 @@ Q.Mask.prototype = {
             this.w = doc.offsetWidth;
             this.h = doc.offsetHeight;
         }
-        var mask = Q(this.id);        
+        var mask = Q("#" +this.id);        
         if (!mask) {
             mask = Q.tag('div', {
                 "id" : this.id
@@ -59,20 +59,20 @@ Q.Mask.prototype = {
     }, 
 
     /**
-     * ÏÔÊ¾ÕÚÕÖ
-     * @param {Number} zIndex ÏÔÊ¾µÄ²ã¼¶, Ä¬ÈÏÊÇ9999
+     * æ˜¾ç¤ºé®ç½©
+     * @param {Number} zIndex æ˜¾ç¤ºçš„å±‚çº§, é»˜è®¤æ˜¯9999
      * @public
      */
     show: function(zIndex) {
         zIndex = zIndex || this.zIndex;
         this.init();
-        var mask = Q(this.id);
+        var mask = Q("#" +this.id);
         var commonStyle = 'position:absolute;z-index:'+ zIndex +';left:0;top:0;width:' + this.w + 'px;height:' + this.h + 'px;';
         if (mask) {
             mask.style.cssText = commonStyle + 'background:#000;opacity:0.3;filter:alpha(opacity=30);';
         }        
         if (this.isIframe) {
-            var iframe = Q(this.iframeId);
+            var iframe = Q("#" +this.iframeId);
             if (iframe) {
                 iframe.style.cssText = commonStyle;
             }
@@ -80,18 +80,18 @@ Q.Mask.prototype = {
     },
 
     /**
-     * Òş²ØÕÚ¸Ç²ã
+     * éšè—é®ç›–å±‚
      * @public
      */
     hide: function() {
-        var mask = Q(this.id);
+        var mask = Q("#" +this.id);
         if (!mask) {
             return;
         }
         var commonStyle = 'position:absolute;left:0;top:0;width:1px;height:1px;';
         mask.style.cssText = commonStyle + 'background:#000;opacity:0.3;filter:alpha(opacity=30);';      
         if (this.isIframe) {
-            var iframe = Q(this.iframeId);
+            var iframe = Q("#" +this.iframeId);
             if (iframe) {
                 iframe.style.cssText = commonStyle;
             }

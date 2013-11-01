@@ -1,18 +1,18 @@
 /**
- * ÈÕÀú¿Ø¼ş
+ * æ—¥å†æ§ä»¶
  * @name Q.Calendar.js
  * @example
  * <pre>
- * <h3>¹¹ÔìÆ÷²ÎÊıËµÃ÷£º</h3>
- * onselect£ºÓÃ»§Ñ¡ÖĞÈÕÆÚÊ±´¥·¢ÊÂ¼ş
- * onviewchange:ÈÕÆÚÊÓ¾õÇøÓòÇĞ»»Ê±´¥·¢ÊÂ¼ş
- * dateStyle£ºÈÕÆÚÑùÊ½£¬¿ÉÎªString»òFunction
+ * <h3>æ„é€ å™¨å‚æ•°è¯´æ˜ï¼š</h3>
+ * onselectï¼šç”¨æˆ·é€‰ä¸­æ—¥æœŸæ—¶è§¦å‘äº‹ä»¶
+ * onviewchange:æ—¥æœŸè§†è§‰åŒºåŸŸåˆ‡æ¢æ—¶è§¦å‘äº‹ä»¶
+ * dateStyleï¼šæ—¥æœŸæ ·å¼ï¼Œå¯ä¸ºStringæˆ–Function
  * 
- * <h3>Ê¾Àı£º</h3>
+ * <h3>ç¤ºä¾‹ï¼š</h3>
  * var myCalendar = new Q.Calendar({
  *     onselect: function (date) {
- *         if (date.getDate() == 1){alert('²»ÈÃÄãÑ¡1ºÅ');return false;}
- *         G("ShowDate").innerHTML = "ÄúÑ¡ÔñµÄÈÕÆÚÊÇ:" + date.getFullYear() + "Äê" + (date.getMonth()+1) + "ÔÂ" + date.getDate() + "ÈÕ";
+ *         if (date.getDate() == 1){alert('ä¸è®©ä½ é€‰1å·');return false;}
+ *         G("ShowDate").innerHTML = "æ‚¨é€‰æ‹©çš„æ—¥æœŸæ˜¯:" + date.getFullYear() + "å¹´" + (date.getMonth()+1) + "æœˆ" + date.getDate() + "æ—¥";
  *     },
  *     dateStyle: function (date) {
  *         if(date.getDay() == 0 || date.getDay() == 6) return "background:#eee";
@@ -21,7 +21,7 @@
  * myCalendar.appendTo(document.body);
  * </pre>
  * @auther wangzhishou@qq.com
- * @param {Object} params ÓÃÓÚ³õÊ¼»¯¿Ø¼şµÄÊôĞÔ¼¯ºÏ
+ * @param {Object} params ç”¨äºåˆå§‹åŒ–æ§ä»¶çš„å±æ€§é›†åˆ
  */
 Q.Calendar = function(params) {
     this.uniqueId =  (new Date()).getTime();
@@ -50,11 +50,11 @@ Q.Calendar = function(params) {
 };
 
 /**
- * »ñµÃÈÕÆÚµ±Ç°ÔÂ·İµÄÌìÊı
+ * è·å¾—æ—¥æœŸå½“å‰æœˆä»½çš„å¤©æ•°
  * 
  * @private
- * @param {Date} ÈÕÆÚ
- * @return {Number} ÌìÊı
+ * @param {Date} æ—¥æœŸ
+ * @return {Number} å¤©æ•°
  */
 Q.Calendar.getDateCountByMonth = function (date) {
     var d = new Date(date.getFullYear(), date.getMonth() + 1, 0);
@@ -63,23 +63,23 @@ Q.Calendar.getDateCountByMonth = function (date) {
 
 Q.Calendar.prototype = {
     /**
-     * ÉèÖÃÈÕÆÚ
+     * è®¾ç½®æ—¥æœŸ
      * 
      * @public
-     * @param {Date} date ÈÕÆÚ
+     * @param {Date} date æ—¥æœŸ
      */
     setDate: function (date) {
         this.date = date;
         this.viewDate = new Date(Date.parse(date));
-        Q(this.bodyId).innerHTML = this.getBodyHtml();
-        Q(this.titleId).innerHTML = this.getTitleHtml();
+        Q("#" +this.bodyId).innerHTML = this.getBodyHtml();
+        Q("#" +this.titleId).innerHTML = this.getTitleHtml();
     },
     
     /**
-     * ½«¿Ø¼ş¸½¼Óµ½Ò³ÃæÈİÆ÷
+     * å°†æ§ä»¶é™„åŠ åˆ°é¡µé¢å®¹å™¨
      * 
      * @public
-     * @param {HTMLElement} el Ò³ÃæÈİÆ÷ÔªËØ
+     * @param {HTMLElement} el é¡µé¢å®¹å™¨å…ƒç´ 
      */
     appendTo: function (el) {
         var wrap = document.createElement('div');;
@@ -93,10 +93,10 @@ Q.Calendar.prototype = {
     },
     
     /**
-     * »æÖÆÈÕÀú¿Ø¼şÍ·
+     * ç»˜åˆ¶æ—¥å†æ§ä»¶å¤´
      * 
      * @private
-     * @param {HTMLElement} container ¿Ø¼ş×ÔÉíÈİÆ÷ÔªËØ
+     * @param {HTMLElement} container æ§ä»¶è‡ªèº«å®¹å™¨å…ƒç´ 
      */
     renderHead: function (container) {
         var doc = document;
@@ -131,10 +131,10 @@ Q.Calendar.prototype = {
     },
     
     /**
-     * »æÖÆÈÕÀú¿Ø¼şÌå
+     * ç»˜åˆ¶æ—¥å†æ§ä»¶ä½“
      * 
      * @private
-     * @param {HTMLElement} container ¿Ø¼ş×ÔÉíÈİÆ÷ÔªËØ
+     * @param {HTMLElement} container æ§ä»¶è‡ªèº«å®¹å™¨å…ƒç´ 
      */
     renderBody: function (container) {
         var body = document.createElement('div');
@@ -147,10 +147,10 @@ Q.Calendar.prototype = {
     },
     
     /**
-     * »ñÈ¡¿Ø¼şÍ·µã»÷µÄÊÂ¼ş¾ä±ú
+     * è·å–æ§ä»¶å¤´ç‚¹å‡»çš„äº‹ä»¶å¥æŸ„
      * 
      * @private
-     * @return {Function} ¿Ø¼şÍ·µã»÷µÄÊÂ¼ş¾ä±ú
+     * @return {Function} æ§ä»¶å¤´ç‚¹å‡»çš„äº‹ä»¶å¥æŸ„
      */
     getHeadClickHandler: function () {
         var me = this;
@@ -177,17 +177,17 @@ Q.Calendar.prototype = {
             var val = me.onviewchange.call(me, vDate);
             if (val !== false) {
                 me.viewDate = vDate;
-                Q(me.bodyId).innerHTML = me.getBodyHtml();
-                Q(me.titleId).innerHTML = me.getTitleHtml();
+                Q("#" +me.bodyId).innerHTML = me.getBodyHtml();
+                Q("#" +me.titleId).innerHTML = me.getTitleHtml();
             }
         };
     },
     
     /**
-     * »ñÈ¡¿Ø¼şÖ÷Ìåµã»÷µÄÊÂ¼ş¾ä±ú
+     * è·å–æ§ä»¶ä¸»ä½“ç‚¹å‡»çš„äº‹ä»¶å¥æŸ„
      * 
      * @private
-     * @return {Function} ¿Ø¼şÍ·µã»÷µÄÊÂ¼ş¾ä±ú
+     * @return {Function} æ§ä»¶å¤´ç‚¹å‡»çš„äº‹ä»¶å¥æŸ„
      */
     getBodyClickHandler: function () {
         var me = this;
@@ -208,20 +208,20 @@ Q.Calendar.prototype = {
     },
     
     /**
-     * »ñÈ¡¿Ø¼ş±êÌâµÄhtml
+     * è·å–æ§ä»¶æ ‡é¢˜çš„html
      * 
      * @private
-     * @return {String} ¿Ø¼ş±êÌâµÄhtml
+     * @return {String} æ§ä»¶æ ‡é¢˜çš„html
      */
     getTitleHtml: function () {
-        return Q.format('{0}Äê{1}ÔÂ', this.viewDate.getFullYear(), (this.viewDate.getMonth() + 1));
+        return Q.format('{0}å¹´{1}æœˆ', this.viewDate.getFullYear(), (this.viewDate.getMonth() + 1));
     },
     
     /**
-     * »ñÈ¡¿Ø¼şÖ÷ÌåµÄhtml
+     * è·å–æ§ä»¶ä¸»ä½“çš„html
      * 
      * @private
-     * @return {String} ¿Ø¼şÖ÷ÌåµÄhtml
+     * @return {String} æ§ä»¶ä¸»ä½“çš„html
      */
     getBodyHtml: function () {
         var theadHtml = this.getTHeadHtml();
@@ -231,13 +231,13 @@ Q.Calendar.prototype = {
     },
     
     /**
-     * »ñÈ¡¿Ø¼ş±íÍ·ÖÜµÄhtml
+     * è·å–æ§ä»¶è¡¨å¤´å‘¨çš„html
      * 
      * @private
-     * @return {String} ¿Ø¼ş±íÍ·ÖÜµÄhtml
+     * @return {String} æ§ä»¶è¡¨å¤´å‘¨çš„html
      */
     getTHeadHtml: function () {
-        var weekMap = ['ÈÕ', 'Ò»', '¶ş', 'Èı', 'ËÄ', 'Îå', 'Áù'];
+        var weekMap = ['æ—¥', 'ä¸€', 'äºŒ', 'ä¸‰', 'å››', 'äº”', 'å…­'];
         var headHtml = ['<tr>'];
         var headItemTpl = '<td sign="week">{0}</td>';
         for (var i = 0; i < 7; i++) {
@@ -248,31 +248,31 @@ Q.Calendar.prototype = {
     },
     
     /**
-     * »ñÈ¡¿Ø¼şÈÕÆÚÌåµÄhtml
+     * è·å–æ§ä»¶æ—¥æœŸä½“çš„html
      * 
      * @private
-     * @return {String} ¿Ø¼şÈÕÆÚÌåµÄhtml
+     * @return {String} æ§ä»¶æ—¥æœŸä½“çš„html
      */
     getTBodyHtml: function () {
-        //Ä£°å±äÁ¿
+        //æ¨¡æ¿å˜é‡
         var dateTemplate = '<td sign="date" style="{4}" class="{3}" y="{2}" m="{1}" d="{0}">{0}</td>';
         var todayClass = 'calendar-today';
         var thisMonthClass = 'calendar-thismonth';
         var otherMonthClass = 'calendar-othermonth';
         
-        //ÈÕÆÚ±äÁ¿
+        //æ—¥æœŸå˜é‡
         var viewDate = this.viewDate;
         var year = viewDate.getFullYear();
         var month = viewDate.getMonth();
         var date = viewDate.getDate();
         
-        //Ç°Ò»¸öÔÂµÄÈÕÆÚ
+        //å‰ä¸€ä¸ªæœˆçš„æ—¥æœŸ
         var prevMonth = new Date(viewDate.getFullYear(), viewDate.getMonth() - 1, 1);
-        //Ç°Ò»¸öÔÂµÄÌìÊı
+        //å‰ä¸€ä¸ªæœˆçš„å¤©æ•°
         var beforeMonthDays = Q.Calendar.getDateCountByMonth(prevMonth);
-        //±¾ÔÂµÄÌìÊı
+        //æœ¬æœˆçš„å¤©æ•°
         var days = Q.Calendar.getDateCountByMonth(viewDate);
-        //¹¹ÔìhtmlµÄÑ­»·³õÊ¼Ë÷Òı
+        //æ„é€ htmlçš„å¾ªç¯åˆå§‹ç´¢å¼•
         var index = 0 - new Date(year, month, 1).getDay();
         
         //make html
@@ -281,7 +281,7 @@ Q.Calendar.prototype = {
             currStyle = this.dateStyle;
         }
         
-        //¹¹ÔìÉÏ¸öÔÂºÍ±¾ÔÂµÄÈÕÆÚhtml
+        //æ„é€ ä¸Šä¸ªæœˆå’Œæœ¬æœˆçš„æ—¥æœŸhtml
         var html = [];
         html.push('<tr>');
         for (var trTag = 0; index < days; index++, trTag++) {
@@ -317,7 +317,7 @@ Q.Calendar.prototype = {
                                              (currClass == todayClass ? "" : currStyle)));
         }
         
-        //¹¹ÔìÏÂ¸öÔÂµÄÈÕÆÚhtml
+        //æ„é€ ä¸‹ä¸ªæœˆçš„æ—¥æœŸhtml
         currMonth = month + 1;
         currYear = year;
         if (currMonth > 11) {

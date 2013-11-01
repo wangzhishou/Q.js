@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="compress" basedir="../" name="wechat">
+	<property name="js" value="./" />
+	<property name="version" value="1.0.0" />
+	<property name="yuicompressor" value="tools/yuicompressor-2.4.7.jar" />
+	<property name="mainjs" value="Q.js" />
+
+	<!-- ================================= target : concat ================================= -->
+	<target name="concat" depends="" description="concat code">
+		<echo message="Concat Code Files Begin" />
+		<concat destfile="${js}\${mainjs}" encoding="utf-8" 
+			fixlastline="on">
+			<!--  Dom -->
+			<fileset dir="./" includes="dom/Q.js" />
+			<fileset dir="./" includes="dom/Q.sizzle.js" />
+			<fileset dir="./" includes="dom/Q._propFix.js" />
+			<fileset dir="./" includes="dom/Q.addClass.js" />
+			<fileset dir="./" includes="dom/Q.alias.js" />
+			<fileset dir="./" includes="dom/Q.attr.js" />
+			<fileset dir="./" includes="dom/Q.clientHeight.js" />
+			<fileset dir="./" includes="dom/Q.clientWidth.js" />
+			<fileset dir="./" includes="dom/Q.css.js" />
+			<fileset dir="./" includes="dom/Q.domReady.js" />
+			<fileset dir="./" includes="dom/Q.getComputedStyle.js" />
+			<fileset dir="./" includes="dom/Q.getDocument.js" />
+			<fileset dir="./" includes="dom/Q.getPosition.js" />
+			<fileset dir="./" includes="dom/Q.hasClass.js" />
+			<fileset dir="./" includes="dom/Q.hide.js" />
+			<fileset dir="./" includes="dom/Q.insterHTML.js" />
+			<fileset dir="./" includes="dom/Q.matchNode.js" />
+			<fileset dir="./" includes="dom/Q.next.js" />
+			<fileset dir="./" includes="dom/Q.parent.js" />
+			<fileset dir="./" includes="dom/Q.prev.js" />
+			<fileset dir="./" includes="dom/Q.remove.js" />
+			<fileset dir="./" includes="dom/Q.removeClass.js" />
+			<fileset dir="./" includes="dom/Q.scrollTop.js" />
+			<fileset dir="./" includes="dom/Q.show.js" />
+			<fileset dir="./" includes="dom/Q.stopBubble.js" />
+			<fileset dir="./" includes="dom/Q.tag.js" />	 			
+			
+			<!--  ajax -->
+			<fileset dir="./" includes="dom/Q.ajax.js" />
+			<fileset dir="./" includes="dom/Q.ajaxForm.js" />
+			<fileset dir="./" includes="dom/Q.loadJs.js" />
+				
+		</concat>
+		<echo message="Concat Code Files Finished" />
+
+	</target>
+
+	<!-- ================================= target : compress ================================= -->
+
+	<target name="compress" depends="concat" description="compress code">
+
+		<echo message="Compress Code Begin" />
+
+		<apply executable="java" parallel="false" failonerror="true" dest="./">
+			<fileset dir="${js}" includes="${mainjs}" />
+			<arg line="-jar" /> 
+			<arg path="${yuicompressor}" />
+			<arg line="--charset utf-8" />
+			<arg line="-o" />
+			<targetfile />
+			<mapper type="glob" from="*.js" to="*_min.js" />
+		</apply>
+
+		<echo message="Compress Code Finish" />
+
+	</target>
+
+</project>

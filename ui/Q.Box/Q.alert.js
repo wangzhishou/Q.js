@@ -1,7 +1,7 @@
 /**
- * µ¯³öÈ·ÈÏ¿ò
+ * å¼¹å‡ºç¡®è®¤æ¡†
  * @name Q.alert
- * @param {String} message ĞèÒªÏÔÊ¾µÄÄÚÈİ£¬Ö§³ÖHTML
+ * @param {String} message éœ€è¦æ˜¾ç¤ºçš„å†…å®¹ï¼Œæ”¯æŒHTML
  * @auther wangzhishou@qq.com
  */
 Q.alert = function(message, options) {	
@@ -16,7 +16,7 @@ Q.alert = function(message, options) {
 	options.maskClick = false;
 	options.isEffect  = false;
 	options.buttons   = {
-		"È·¶¨" : {
+		"ç¡®å®š" : {
 			"id" : "QalertSubmit",
 			"className" : "button green",
 			"callBack" : {
